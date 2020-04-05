@@ -1,0 +1,9 @@
+<div>
+    <ul>
+      <% shiurim.forEach(function(shiur){ %>
+        <li>
+            <span class="author"><%= shiur.author %></span> <span> <%= shiur.title %></span>
+        </li>
+      <% }); %>
+    </ul>
+</div>
