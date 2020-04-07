@@ -9,7 +9,6 @@ const { document } = (new JSDOM('')).window;
 const ejs = require('ejs');
 global.document = document;
 const AWS = require('aws-sdk');
-AWS.config.update({ accessKeyId: 'AKIAYEYY6UG335W7DVJO', secretAccessKey: '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', region: 'us-east-2'});
 
 const s3 = new AWS.S3();
 

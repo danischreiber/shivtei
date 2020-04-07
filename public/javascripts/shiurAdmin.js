@@ -7,7 +7,6 @@ const $ = require('jquery')(window);
 const {google} = require('googleapis');
 const ACCESS_TOKEN = "ya29.a0Ae4lvC1ANsJvHc2-v9UGjfe7POdFRy7kWvbYjqEUznTp_zYQH-1MShNXTgwANRyw7MGFrwi0oKg5PdGpuqVfG58RObiWc7b1Gk2BUMh_PMphwPRZFkmBwVPlIx8Gp1GUFrAwNk-2CQLN-wk3HgtmPRL8uSQERtHcdN0";
 const fs = require('fs');
-const credentials = require('./credentials.json');
 const readline = require('readline');
 
 
@@ -15,10 +14,6 @@ const SCOPES = [
     'https://www.googleapis.com/auth/drive.file'
 ];
 
-const auth = new google.auth.JWT(
-    credentials.client_email, null,
-    credentials.private_key, SCOPES
-);
 
 let controller = {
     auth: function(file, callback) {
@@ -90,7 +85,11 @@ let controller = {
         };
         var media = {
             mimeType: 'image/jpeg',
-            body: fs.createReadStream(file.path)
+            body: fs.createReadStream(file.path),
+            properties: {
+                "author": "AUth1",
+                "title": "tit1"
+            }
         };
         const drive = google.drive({version: 'v3', auth});
 
@@ -108,7 +107,7 @@ let controller = {
         });
     },
 
-    uploadFileDrive: function(file){
+    uploadFileDrive: function(file, props){
 
         const auth = this.auth(file, this.create);
         // this.create(auth, file);

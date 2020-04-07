@@ -29,13 +29,15 @@ router.get('/drive-all', function(req, res){
 });
 
 router.post('/add-shiur', function(req, res){
+  const props = req.query;
+
   var form = new formidable.IncomingForm();
   form.multiples = true;
   form.keepExtensions = true;
   form.uploadDir = '';
   form.parse(req, (err, fields, files) => {
     if (err) return res.status(500).json({ error: err })
-      shiurAdmin.uploadFileDrive(files[""]);
+      shiurAdmin.uploadFileDrive(files[""], props);
 
     res.status(200).json({ uploaded: true })
   });
