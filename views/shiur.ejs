@@ -2,7 +2,7 @@
     <ul>
       <% shiurim.forEach(function(shiur){ %>
         <li>
-            <span class="author"><%= shiur.author %></span> <span> <%= shiur.title %></span>
+            <span class="author"><%= shiur.author %></span>  <a href=<%= shiur.streamUrl %> target='blank'><%= shiur.title %></a> <a href=<%= shiur.downloadUrl %>>Download</a>
         </li>
       <% }); %>
     </ul>
